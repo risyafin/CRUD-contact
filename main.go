@@ -15,47 +15,6 @@ type contact struct {
 	Nama  string `json:"name"`
 	Phone string `json:"phone"`
 }
-
-// func main() {
-// 	// refer https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
-// 	db, err := gorm.Open(mysql.Open("root:18543@tcp(localhost:3306)/db_contact"), &gorm.Config{})
-// 	if err != nil {
-// 		panic("Failed connect to databases")
-// 	}
-// 	var contacts []contact
-// 	result := db.Find(&contacts)
-
-// 	if result.Error != nil {
-// 		fmt.Println(result.Error.Error())
-// 		return
-// 	}
-// 	fmt.Println(contacts)
-// }
-
-// import (
-// 	"encoding/json"
-// 	"fmt"
-// 	"net/http"
-
-// 	"gorm.io/driver/mysql"
-
-// 	"github.com/gorilla/mux"
-// 	"gorm.io/gorm"
-// )
-
-// type contact struct {
-// 	Id    int    `json:"id"`
-// 	Name  string `json:"name"`
-// 	Phone string `json:"phone"`
-// }
-
-//	func connect() (*sql.DB, error) {
-//		db, err := sql.Open("mysql", "root:18543@tcp(localhost:3306)/db_contact")
-//		if err != nil {
-//			return nil, err
-//		}
-//		return db, nil
-//	}
 func user(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("contenct-type", "application/json")
 	vars := mux.Vars(r)
@@ -138,6 +97,7 @@ func create(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write([]byte("success"))
 }
+
 func users(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
 	db, err := gorm.Open(mysql.Open("root:18543@tcp(localhost:3306)/db_contact"), &gorm.Config{})
